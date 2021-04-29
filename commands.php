@@ -1,0 +1,11 @@
+php artisan make:model User -m
+php artisan make:model Client -m
+php artisan make:model Subscription -m
+php artisan make:model SubClient -m
+php artisan make:model Employee -m
+php artisan make:model Monitor -m
+php artisan make:model Session -m
+php artisan make:model SessionClient -m
+php artisan make:model Admin -m
+php artisan make:model Task -m
+php artisan make:model EmployeeTask -m
