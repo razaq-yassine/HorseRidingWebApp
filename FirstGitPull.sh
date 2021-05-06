@@ -4,6 +4,7 @@ composer install --optimize-autoloader --no-dev
 rm public/storage
 php artisan storage:link
 php artisan key:generate
+sudo cp .env.example .env
 sudo chown -R www-data:www-data $(pwd)/vendor
 sudo chown -R www-data:www-data $(pwd)/storage
 systemctl restart apache2
