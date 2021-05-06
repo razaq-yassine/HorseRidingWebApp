@@ -78,3 +78,6 @@ Route::group( ['middleware' => 'notAuth'], function ()
     Route::post('/login', "GuestController@login");
     Route::post('/register', "GuestController@register");
 });
+Route::get('/', function (){
+    return view("welcome");
+});
