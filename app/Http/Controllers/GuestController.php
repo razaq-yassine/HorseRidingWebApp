@@ -31,6 +31,8 @@ class GuestController extends Controller
         else{
             return response()->json([
                 'Success' => "false",
+                "email" => $request->get("email"),
+                "password" => $request->get("password"),
             ]);
 //            return back()->withErrors([
 //                'email' => 'Désole, adresse électronique ou mot de passe non valide.',
