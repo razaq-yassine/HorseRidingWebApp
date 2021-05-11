@@ -12,14 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class GuestController extends Controller
 {
     public function login(request $request){
-        request()->validate([
-            'email' => 'required|email|exists:users,Email_User',
-            'password' => 'required',
-        ],[
-            'email.required' => "Désole l'adresse mail est obligatoire",
-            'email.email' => "Désole le format de l'adresse mail est invalide.",
-            'email.exists' => "Désole, adresse électronique ou mot de passe non valide.",
-            'password.required' => "Désole le mot de passe est obligatoire",
+        return response()->json([
+            'Success' => "true",
+            'email' => request('password'),
+            'password' => request('email'),
         ]);
 
         // cheking credentials
