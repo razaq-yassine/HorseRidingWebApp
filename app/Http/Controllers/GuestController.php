@@ -48,10 +48,14 @@ class GuestController extends Controller
             "password" => bcrypt($request->post("password")),
             "Type_User" => $request->post("type"),
         ];
+        return response()->json([
+            'Success' => $data,
+        ]);
+
         $user = User::create($data);
         $saved =  $user->save();
         return response()->json([
-            'Success' => $saved,
+            'Success' => $data,
         ]);
 
     }
