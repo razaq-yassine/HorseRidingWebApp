@@ -23,7 +23,7 @@ class GuestController extends Controller
 //        ]);
 
         // cheking credentials
-        if(Auth::attempt(['Email_User' => $request->get("email"), 'password' => bcrypt($request->get("password"))])){
+        if(Auth::attempt(['Email_User' => $request->query("email"), 'password' => bcrypt($request->query("password"))])){
             return response()->json([
                 'Success' => "true",
             ]);
@@ -31,8 +31,8 @@ class GuestController extends Controller
         else{
             return response()->json([
                 'Success' => "false",
-                "email" => $request->get("email"),
-                "password" => $request->get("password"),
+                "email" => $request->query("email"),
+                "password" => $request->query("password"),
             ]);
 //            return back()->withErrors([
 //                'email' => 'Désole, adresse électronique ou mot de passe non valide.',
