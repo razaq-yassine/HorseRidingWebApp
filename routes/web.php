@@ -81,3 +81,8 @@ Route::group( ['middleware' => 'notAuth'], function ()
 Route::get('/', function (){
     return view("welcome");
 });
+Route::get('/test', function (){
+    return response()->json([
+        'Success' => "24",
+    ]);
+});
