@@ -30,7 +30,7 @@ class GuestController extends Controller
         }
         else{
             return response()->json([
-                'Success' => "false",
+                'Success' => "false" + request('email') + request('password'),
             ]);
 //            return back()->withErrors([
 //                'email' => 'Désole, adresse électronique ou mot de passe non valide.',
@@ -39,10 +39,10 @@ class GuestController extends Controller
     }
     public function register(Request $request){
         $data = [
-            "Name_User" => $request->post("name"),
-            "Email_User" => $request->post("email"),
-            "password" => bcrypt($request->post("password")),
-            "Type_User" => $request->post("type"),
+            "Name_User" => $request->get("name"),
+            "Email_User" => $request->get("email"),
+            "password" => bcrypt($request->get("password")),
+            "Type_User" => $request->get("type"),
         ];
 
         $user = User::create($data);
