@@ -14,8 +14,8 @@ class GuestController extends Controller
     public function login(request $request){
         return response()->json([
             'Success' => "true",
-            'email' => request('password'),
-            'password' => request('email'),
+            'email' => request('email'),
+            'password' => request('password'),
         ]);
 
         // cheking credentials
