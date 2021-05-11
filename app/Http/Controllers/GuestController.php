@@ -38,10 +38,6 @@ class GuestController extends Controller
         }
     }
     public function register(Request $request){
-        request()->validate([
-            'email' => 'required|email|exists:users,Email_User',
-            'password' => 'required',
-        ]);
         $data = [
             "Name_User" => $request->post("name"),
             "Email_User" => $request->post("email"),
