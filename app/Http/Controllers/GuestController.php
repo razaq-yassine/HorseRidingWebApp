@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,12 +24,17 @@ class GuestController extends Controller
 
         // cheking credentials
         if(Auth::attempt(['Email_User' => request('email'), 'password' => request('password')])){
-            return redirect('/Admin');
+            return response()->json([
+                'Success' => "true",
+            ]);
         }
         else{
-            return back()->withErrors([
-                'email' => 'Désole, adresse électronique ou mot de passe non valide.',
+            return response()->json([
+                'Success' => "false",
             ]);
+//            return back()->withErrors([
+//                'email' => 'Désole, adresse électronique ou mot de passe non valide.',
+//            ]);
         }
     }
     public function register(Request $request){
@@ -37,10 +43,10 @@ class GuestController extends Controller
             'password' => 'required',
         ]);
         $data = [
-            "Name_User" => $request->input("name"),
-            "Email_User" => $request->input("email"),
-            "password" => bcrypt($request->input("password")),
-            "Type_User" => $request->input("type"),
+            "Name_User" => $request->post("name"),
+            "Email_User" => $request->post("email"),
+            "password" => bcrypt($request->post("password")),
+            "Type_User" => $request->post("type"),
         ];
         $user = User::create($data);
         $saved =  $user->save();
