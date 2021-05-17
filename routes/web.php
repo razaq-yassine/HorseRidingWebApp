@@ -77,6 +77,7 @@ Route::group( ['middleware' => 'notAuth'], function ()
 {
     Route::get('/login', "GuestController@login");
     Route::get('/register', "GuestController@register");
+    // http://horse-riding.sabitus.com/register?Name_User=&Name_User=&Email_User=&password=&Type_User=/
 });
 Route::get('/', function (){
     return view("welcome");
