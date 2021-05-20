@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -11,14 +12,14 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'id' =>'required',
+            'id' => 'required',
             'Name_User' => 'required',
             'Email_User' => "required"
         ]);
 
         $data = [
-            'Name_User' =>$request->input('Name_User'),
-            'Email_User' =>$request->input('Email_User')
+            'Name_User' => $request->input('Name_User'),
+            'Email_User' => $request->input('Email_User')
         ];
 
         // Sending data to our repository
@@ -29,5 +30,18 @@ class UserController extends Controller
             'Success' => $success
         ]);
 
+    }
+
+    public function editPass(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'Current' => 'required',
+            'New' => 'required'
+        ]);
+
+        return response()->json([
+            'Success' => UserRepository::updatePass(request('id'), request('Current'), request('New'))
+        ]);
     }
 }

@@ -23,12 +23,13 @@ class GuestController extends Controller
 //        ]);
         $user = User::findByEmail(request('email'));
         // cheking credentials
-        if(Hash::check(request('password'), $user->Email_User)){
+        if(!Hash::check(request('password'), $user->password)){
             return response()->json([
-                'Success' => "true",
+                'Success' => "false",
             ]);
         }
         else{
+
             return response()->json([
                 'Success' => "true",
                 'id' => $user->id_User,

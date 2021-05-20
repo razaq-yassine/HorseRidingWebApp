@@ -5,6 +5,8 @@ namespace App\Repository;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 // imports
 
 class UserRepository
@@ -24,4 +26,16 @@ class UserRepository
 		}
 
 	}
+	public static function updatePass($id, $current, $new){
+        $user = User::find($id);
+        // checking current pass
+        if(Hash::check($current, $user->password)){
+            $user->update([
+                'password' => bcrypt($new)
+            ]);
+            $saved = $user->save();
+            return $saved;
+        }
+        return false;
+    }
 }

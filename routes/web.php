@@ -74,6 +74,8 @@ Route::get('/register', "GuestController@register");
 // http://horse-riding.sabitus.com/register?Name_User=&Name_User=&Email_User=&password=&Type_User=
 Route::get('/User/editUser', "UserController@editUser");
 // http://horse-riding.sabitus.com/User/editUser?id=2&Name_User=Yassine2&Email_User=yassine.razaq@gmail.com
+Route::get('/User/editPass', "UserController@editPass");
+    // http://horse-riding.sabitus.com/User/editPass?id=1&Current=&New=
 
 
 
