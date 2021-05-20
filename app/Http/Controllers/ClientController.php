@@ -25,7 +25,7 @@ class ClientController extends Controller
 		];
 
 		// Sending data to our repository
-		$success = RepositoryName::createNewSubClient($data);
+		$success = ClientRepository::createNewSubClient($data);
 		// returning results
 		//return back()->with('Success', $status);
 		return response()->json([
@@ -37,7 +37,7 @@ class ClientController extends Controller
 	{
 
 		// Sending request to our repository
-		$success = RepositoryName::deleteSubClient($request->input('id'));
+		$success = ClientRepository::deleteSubClient($request->input('id'));
 		// returning results
 		//return back()->with('Success', $status);
 		return response()->json([
@@ -63,7 +63,7 @@ class ClientController extends Controller
 		];
 
 		// Sending data to our repository
-		$success = RepositoryName::createNewSessionClient($data);
+		$success = ClientRepository::createNewSessionClient($data);
 		// returning results
 		//return back()->with('Success', $status);
 		return response()->json([
@@ -75,7 +75,7 @@ class ClientController extends Controller
 	{
 
 		// Sending request to our repository
-		$success = RepositoryName::deleteSessionClient($request->input('id'));
+		$success = ClientRepository::deleteSessionClient($request->input('id'));
 		// returning results
 		//return back()->with('Success', $status);
 		return response()->json([
