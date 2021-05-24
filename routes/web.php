@@ -9,10 +9,7 @@ Route::group(['middleware' => 'isAuth'], function () {
         Route::get('/Admin/addClient', 'AdminController@addClient');
         Route::get('/Admin/editClient', 'AdminController@editClient');
         Route::get('/Admin/deleteClient', 'AdminController@deleteClient');
-// Subscription
-        Route::get('/Admin/addSubscription', 'AdminController@addSubscription');
-        Route::get('/Admin/editSubscription', 'AdminController@editSubscription');
-        Route::get('/Admin/deleteSubscription', 'AdminController@deleteSubscription');
+
 // SubClient
         Route::get('/Admin/addSubClient', 'AdminController@addSubClient');
         Route::get('/Admin/editSubClient', 'AdminController@editSubClient');
@@ -78,6 +75,13 @@ Route::get('/User/editPass', "UserController@editPass");
     // http://horse-riding.sabitus.com/User/editPass?id=1&Current=&New=
 
 
+// Subscription
+Route::get('/Admin/addSubscription', 'AdminController@addSubscription');
+// http://horse-riding.sabitus.com/Admin/addSubscription?Name=&Price=
+Route::get('/Admin/editSubscription', 'AdminController@editSubscription');
+// http://horse-riding.sabitus.com/Admin/editSubscription?Name=&Price=
+Route::get('/Admin/deleteSubscription', 'AdminController@deleteSubscription');
+// http://horse-riding.sabitus.com/Admin/deleteSubscription?id=
 
 Route::get('/', function () {
     return view("welcome");

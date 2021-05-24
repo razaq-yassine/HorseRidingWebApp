@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 // imports
 use App\Repository\AdminRepository;
@@ -64,10 +65,13 @@ class AdminController extends Controller
 	public function addSubscription(Request $request)
 	{
 
-		$request->validate([
-			'Name' => 'required',
+		$validator = Validator::make($request->all(), [
+			'Name' => 'required|unique:subscriptions,Name_Subscription',
 			'Price' => 'required',
 		]);
+        if ($validator->fails()) {
+            return response()->json(['Success' => false]);
+        }
 
 		$data = [
 			'Name_Subscription' => $request->input('Name'),
@@ -86,10 +90,13 @@ class AdminController extends Controller
 	public function editSubscription(Request $request)
 	{
 
-		$request->validate([
-			'Name' => 'required',
-			'Price' => 'required',
-		]);
+        $validator = Validator::make($request->all(), [
+            'Name' => 'required|unique:subscriptions,Name_Subscription',
+            'Price' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['Success' => false]);
+        }
 
 		$data = [
 			'Name_Subscription' => $request->input('Name'),
