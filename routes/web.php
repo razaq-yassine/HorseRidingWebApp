@@ -76,12 +76,15 @@ Route::get('/User/editPass', "UserController@editPass");
 
 
 // Subscription
+Route::get('/Admin/listAllSubscriptions', 'AdminController@listAllSubscriptions');
+// http://horse-riding.sabitus.com/Admin/listAllSubscriptions
 Route::get('/Admin/addSubscription', 'AdminController@addSubscription');
 // http://horse-riding.sabitus.com/Admin/addSubscription?Name=&Price=
 Route::get('/Admin/editSubscription', 'AdminController@editSubscription');
 // http://horse-riding.sabitus.com/Admin/editSubscription?Name=&Price=
 Route::get('/Admin/deleteSubscription', 'AdminController@deleteSubscription');
 // http://horse-riding.sabitus.com/Admin/deleteSubscription?id=
+
 
 Route::get('/', function () {
     return view("welcome");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Subscription;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 // imports
@@ -62,6 +63,12 @@ class AdminController extends Controller
 		]);
 
 	}
+	public function listAllSubscriptions(){
+	    $subscriptions = Subscription::orderBy('created_at', 'desc')->get();
+	    return response()->json([
+	        "subscriptions" => $subscriptions
+        ]);
+    }
 	public function addSubscription(Request $request)
 	{
 
