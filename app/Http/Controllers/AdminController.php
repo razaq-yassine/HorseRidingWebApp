@@ -101,7 +101,7 @@ class AdminController extends Controller
 
         $validator = Validator::make($request->all(), [
             'id' => 'required',
-            'Name' => ['required', Rule::unique('subscriptions')->ignore($request->input('id'), 'id_Subscription')],
+            'Name' => ['required', Rule::unique('subscriptions', 'Name_Subscription')->ignore($request->input('id'), 'id_Subscription')],
             'Price' => 'required',
         ]);
         if ($validator->fails()) {
