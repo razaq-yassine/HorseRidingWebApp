@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use App\Subscription;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 // imports
@@ -99,7 +100,8 @@ class AdminController extends Controller
 	{
 
         $validator = Validator::make($request->all(), [
-            'Name' => 'required|unique:subscriptions,Name_Subscription',
+            'id' => 'required',
+            'Name' => ['required', Rule::unique('subscriptions')->ignore($request->input('id'), 'id_Subscription')],
             'Price' => 'required',
         ]);
         if ($validator->fails()) {
@@ -296,15 +298,15 @@ class AdminController extends Controller
 	}
 	public function editSession(Request $request)
 	{
-
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'Id_Monitor' => 'required',
-            'Name_Session'=> 'required|unique:sessions,Name_Session',
+            'Name_Session'=> ['required', Rule::unique('sessions')->ignore($request->input('id'), 'id_Session')],
             'Price_Session'=> 'required',
             'Date_Session' =>'required',
         ]);
         if ($validator->fails()) {
+            return $validator->failed();
             return response()->json(['Success' => false]);
         }
         $data = [
