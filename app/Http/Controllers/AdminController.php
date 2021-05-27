@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Session;
 use App\Subscription;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -191,15 +192,25 @@ class AdminController extends Controller
 		]);
 
 	}
+	// Sessions
+    public function listAllSessions(){
+        $sessions = Session::orderBy('created_at', 'desc')->get();
+        return response()->json([
+            "sessions" => $sessions
+        ]);
+    }
 	public function addSessionClient(Request $request)
 	{
 
-		$request->validate([
+        $validator = Validator::make($request->all(), [
 			'Id_Session' => 'required',
 			'Id_Client' => 'required',
 			'IsPayed' => 'required',
 			'IsPresent' => 'required',
 		]);
+        if ($validator->fails()) {
+            return response()->json(['Success' => false]);
+        }
 
 		$data = [
 			'Id_Session' => $request->input('Id_Session'),
@@ -258,15 +269,20 @@ class AdminController extends Controller
 	public function addSession(Request $request)
 	{
 
-		$request->validate([
+        $validator = Validator::make($request->all(), [
 			'Id_Monitor' => 'required',
+            'Name_Session'=> 'required|unique:sessions,Name_Session',
+            'Price_Session'=> 'required',
+            'Date_Session' =>'required',
 		]);
-
+        if ($validator->fails()) {
+            return response()->json(['Success' => false]);
+        }
 		$data = [
 			'Id_Monitor' => $request->input('Id_Monitor'),
-			'Name_Session' => null,
-			'Price_Session' => null,
-			'Date_Session' => null,
+			'Name_Session' => $request->input('Name_Session'),
+			'Price_Session' => $request->input('Price_Session'),
+			'Date_Session' => $request->input("Date_Session"),
 		];
 
 		// Sending data to our repository
@@ -281,16 +297,22 @@ class AdminController extends Controller
 	public function editSession(Request $request)
 	{
 
-		$request->validate([
-			'Id_Monitor' => 'required',
-		]);
-
-		$data = [
-			'Id_Monitor' => $request->input('Id_Monitor'),
-			'Name_Session' => null,
-			'Price_Session' => null,
-			'Date_Session' => null,
-		];
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'Id_Monitor' => 'required',
+            'Name_Session'=> 'required|unique:sessions,Name_Session',
+            'Price_Session'=> 'required',
+            'Date_Session' =>'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['Success' => false]);
+        }
+        $data = [
+            'Id_Monitor' => $request->input('Id_Monitor'),
+            'Name_Session' => $request->input('Name_Session'),
+            'Price_Session' => $request->input('Price_Session'),
+            'Date_Session' => $request->input("Date_Session"),
+        ];
 
 		// Sending data to our repository
 		$success = AdminRepository::updateSession($request->input('id'), $data);

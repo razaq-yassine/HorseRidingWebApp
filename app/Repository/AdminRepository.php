@@ -186,9 +186,9 @@ class AdminRepository
 	public static function updateSession($id_Session,$data)
 	{
 
-		try {
-		$session = Session::find($id_Session);
-		$session->update($data);
+        $session = Session::find($id_Session);
+        $session->update($data);
+        try {
 		$saved =$session->save();
 		return $saved;
 		} catch (\Exception $e) {

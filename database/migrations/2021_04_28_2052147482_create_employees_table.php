@@ -15,11 +15,12 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
 			$table->bigIncrements('id_Employee');
+            $table->unsignedBigInteger('Id_User');
 			$table->double('Salary_Employee')->nullable();
 			$table->string('Role_Employee')->nullable();
 			$table->timestamps();
-			 
-			 
+
+            $table->foreign('Id_User')->references('id_User')->on('users');
         });
     }
 

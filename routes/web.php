@@ -18,10 +18,7 @@ Route::group(['middleware' => 'isAuth'], function () {
         Route::get('/Admin/addSessionClient', 'AdminController@addSessionClient');
         Route::get('/Admin/editSessionClient', 'AdminController@editSessionClient');
         Route::get('/Admin/deleteSessionClient', 'AdminController@deleteSessionClient');
-// Session
-        Route::get('/Admin/addSession', 'AdminController@addSession');
-        Route::get('/Admin/editSession', 'AdminController@editSession');
-        Route::get('/Admin/deleteSession', 'AdminController@deleteSession');
+
 // Employee
         Route::get('/Admin/addEmployee', 'AdminController@addEmployee');
         Route::get('/Admin/editEmployee', 'AdminController@editEmployee');
@@ -67,23 +64,22 @@ Route::group(['middleware' => 'isAuth'], function () {
 });
 
 Route::get('/login', "GuestController@login");
-Route::get('/register', "GuestController@register");
-// http://horse-riding.sabitus.com/register?Name_User=&Name_User=&Email_User=&password=&Type_User=
-Route::get('/User/editUser', "UserController@editUser");
-// http://horse-riding.sabitus.com/User/editUser?id=2&Name_User=Yassine2&Email_User=yassine.razaq@gmail.com
-Route::get('/User/editPass', "UserController@editPass");
-    // http://horse-riding.sabitus.com/User/editPass?id=1&Current=&New=
+Route::get('/register', "GuestController@register"); // register?Name_User=&Name_User=&Email_User=&password=&Type_User=
+Route::get('/User/editUser', "UserController@editUser"); // User/editUser?id=2&Name_User=Yassine2&Email_User=yassine.razaq@gmail.com
+Route::get('/User/editPass', "UserController@editPass"); // User/editPass?id=1&Current=&New=
 
 
 // Subscription
-Route::get('/Admin/listAllSubscriptions', 'AdminController@listAllSubscriptions');
-// http://horse-riding.sabitus.com/Admin/listAllSubscriptions
-Route::get('/Admin/addSubscription', 'AdminController@addSubscription');
-// http://horse-riding.sabitus.com/Admin/addSubscription?Name=&Price=
-Route::get('/Admin/editSubscription', 'AdminController@editSubscription');
-// http://horse-riding.sabitus.com/Admin/editSubscription?Name=&Price=
-Route::get('/Admin/deleteSubscription', 'AdminController@deleteSubscription');
-// http://horse-riding.sabitus.com/Admin/deleteSubscription?id=
+Route::get('/Admin/listAllSubscriptions', 'AdminController@listAllSubscriptions'); // Admin/listAllSubscriptions
+Route::get('/Admin/addSubscription', 'AdminController@addSubscription'); // Admin/addSubscription?Name=&Price=
+Route::get('/Admin/editSubscription', 'AdminController@editSubscription'); // Admin/editSubscription?id=&Name=&Price=
+Route::get('/Admin/deleteSubscription', 'AdminController@deleteSubscription'); // Admin/deleteSubscription?id=
+
+// Session
+Route::get('/Admin/listAllSessions', 'AdminController@listAllSessions'); // Admin/listAllSessions
+Route::get('/Admin/addSession', 'AdminController@addSession'); // Admin/addSession?Id_Monitor=&Name_Session=&Price_Session=&Date_Session=
+Route::get('/Admin/editSession', 'AdminController@editSession'); // Admin/editSession?id=&Id_Monitor=&Name_Session=&Price_Session=&Date_Session=
+Route::get('/Admin/deleteSession', 'AdminController@deleteSession'); // Admin/deleteSession?id=
 
 
 Route::get('/', function () {
