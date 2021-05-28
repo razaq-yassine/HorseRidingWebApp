@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 
+use App\Image;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,11 +14,17 @@ class UserRepository
 {
 
     public static function updateUserPic($id_User, $data){
-        return true;
         try {
-            $admin = User::find($id_User);
-            $admin->update($data);
-            $saved =$admin->save();
+            $user = User::find($id_User);
+            // uploading file to storage
+            $image = base64_decode($data["uploaded_file"]);
+            $imageName = str_replace(' ', "_",$user->Name_User)."_".$user->id_User.".".strtolower($data["extension"]);
+            $destination = "Users/";
+            Image::upload($destination, $imageName, $image);
+            $user->update([
+                "Img_User" => "/storage/" . $destination .$imageName,
+            ]);
+            $saved =$user->save();
             return $saved;
         } catch (\Exception $e) {
             report($e);

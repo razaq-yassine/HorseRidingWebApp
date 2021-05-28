@@ -32,11 +32,7 @@ class GuestController extends Controller
 
             return response()->json([
                 'Success' => "true",
-                'id' => $user->id_User,
-                'Name_User' => $user->Name_User,
-                'email' => $user->Email_User,
-                'password' => request('password'),
-                'Type_User' => $user->Type_User,
+                'user' => $user,
             ]);
 //            return back()->withErrors([
 //                'email' => 'Désole, adresse électronique ou mot de passe non valide.',

@@ -69,6 +69,7 @@ Route::get('/register', "GuestController@register"); // register?Name_User=&Name
 Route::get('/User/editUser', "UserController@editUser"); // User/editUser?id=2&Name_User=Yassine2&Email_User=yassine.razaq@gmail.com
 Route::get('/User/editPass', "UserController@editPass"); // User/editPass?id=1&Current=&New=
 Route::post('/User/editUserPic', "UserController@editUserPic"); // User/editUserPic
+Route::get('/User/editUserPic', "UserController@editUserPic"); // User/editUserPic
 
 // Subscription
 Route::get('/Admin/listAllSubscriptions', 'AdminController@listAllSubscriptions'); // Admin/listAllSubscriptions

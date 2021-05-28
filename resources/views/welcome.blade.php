@@ -70,6 +70,13 @@
                     Horse Riding App
                 </div>
                 <img src="https://wallpapercave.com/wp/wp7601315.jpg" style="width: 35rem;">
+                <form action="User/editUserPic" method="post">
+                    <input name="uploaded_file" placeholder="uploaded_file" required>
+                    <input name="extension" placeholder="extenstion" required>
+                    <input name="id_User" placeholder="id_User" required>
+
+                    <input type="submit">
+                </form>
             </div>
         </div>
     </body>
