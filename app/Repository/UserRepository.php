@@ -12,11 +12,24 @@ use Illuminate\Support\Facades\Hash;
 class UserRepository
 {
 
-	public static function updateUser($id_Admin,$data)
+    public static function updateUserPic($id_User, $data){
+        return true;
+        try {
+            $admin = User::find($id_User);
+            $admin->update($data);
+            $saved =$admin->save();
+            return $saved;
+        } catch (\Exception $e) {
+            report($e);
+            return false;
+        }
+
+    }
+	public static function updateUser($id_User,$data)
 	{
 
 		try {
-		$admin = User::find($id_Admin);
+		$admin = User::find($id_User);
 		$admin->update($data);
 		$saved =$admin->save();
 		return $saved;
