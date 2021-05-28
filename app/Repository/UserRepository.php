@@ -5,6 +5,7 @@ namespace App\Repository;
 
 use App\Image;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,7 +19,7 @@ class UserRepository
             $user = User::find($id_User);
             // uploading file to storage
             $image = base64_decode($data["uploaded_file"]);
-            $imageName = str_replace(' ', "_",$user->Name_User)."_".$user->id_User.".".strtolower($data["extension"]);
+            $imageName = str_replace(' ', "_",$user->Name_User)."_".$user->id_User."_". Carbon::now()->toDateTimeString().".".strtolower($data["extension"]);
             $destination = "Users/";
             Image::delete(str_replace("storage/", "", $user->Img_User));
             Image::upload($destination, $imageName, $image);
