@@ -20,9 +20,10 @@ class UserRepository
             $image = base64_decode($data["uploaded_file"]);
             $imageName = str_replace(' ', "_",$user->Name_User)."_".$user->id_User.".".strtolower($data["extension"]);
             $destination = "Users/";
+            Image::delete(str_replace("storage/", "", $user->Img_User));
             Image::upload($destination, $imageName, $image);
             $user->update([
-                "Img_User" => "storage/" . $destination .$imageName,
+                "Img_User" => "storage/".$destination .$imageName,
             ]);
             $saved =$user->save();
             return $saved;
