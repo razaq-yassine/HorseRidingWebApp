@@ -22,7 +22,7 @@ class UserRepository
             $destination = "Users/";
             Image::upload($destination, $imageName, $image);
             $user->update([
-                "Img_User" => "/storage/" . $destination .$imageName,
+                "Img_User" => "storage/" . $destination .$imageName,
             ]);
             $saved =$user->save();
             return $saved;
