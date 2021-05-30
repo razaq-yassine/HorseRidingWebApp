@@ -306,8 +306,10 @@ class AdminController extends Controller
             'Date_Session' =>'required',
         ]);
         if ($validator->fails()) {
-            return $validator->failed();
-            return response()->json(['Success' => false]);
+            return response()->json([
+                'Success' => false,
+                "error"=>$validator->failed()
+            ]);
         }
         $data = [
             'Id_Monitor' => $request->input('Id_Monitor'),
