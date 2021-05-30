@@ -26,22 +26,22 @@ class GuestController extends Controller
             switch ($user->Type_User){
                 // client
                 case 1:
-                    array_push($userArr, ['client'=> $user->getClient()]);
+                    $userArr = array_merge($userArr, ["client"=> $user->getClient()]);
                     break;
                 // admin
                 case -99:
-                    array_push($userArr, ['admin'=> $user->getAdmin()]);
+                    $userArr = array_merge($userArr, ['admin'=> $user->getAdmin()]);
                     break;
                 // monitor
                 case -1:
                     $emplyee = $user->getEmployee();
                     $emplyeeArr = $emplyee->toArray();
-                    array_push($emplyeeArr, ["monitor"=> $emplyee->getMonitor()]);
-                    array_push($userArr, ['employee'=> $emplyee]);
+                    $emplyeeArr = array_merge($emplyeeArr, ["monitor"=> $emplyee->getMonitor()]);
+                    $userArr = array_merge($userArr, ['employee'=> $emplyeeArr]);
                     break;
                 // employee
                 case -2:
-                    array_push($userArr, ['employee'=> $user->getEmployee()]);
+                    $userArr = array_merge($userArr, ['employee'=> $user->getEmployee()]);
                     break;
 
             }
@@ -49,9 +49,6 @@ class GuestController extends Controller
                 'Success' => "true",
                 'user' => $userArr,
             ]);
-//            return back()->withErrors([
-//                'email' => 'Désole, adresse électronique ou mot de passe non valide.',
-//            ]);
         }
     }
     public function register(Request $request){

@@ -53,7 +53,7 @@ class ClientController extends Controller
 	    $SessionsClient = Sessionclient::where("Id_Client", $request->input("id_Client"))->get();
 	    $SessionsClientArray = $SessionsClient->toArray();
 	    for($i =0 ; $i<$SessionsClient->count(); $i++){
-	        array_push($SessionsClientArray[$i], ["session" =>$SessionsClient[$i]->getSession()]);
+            $SessionsClientArray[$i] = array_merge($SessionsClientArray[$i], ["session" =>$SessionsClient[$i]->getSession()]);
         }
 	    return response()->json([
 	       "SessionsClient" => $SessionsClientArray

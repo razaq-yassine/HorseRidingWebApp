@@ -65,7 +65,7 @@ Route::group(['middleware' => 'isAuth'], function () {
 
 // User
 Route::get('/login', "GuestController@login");
-    Route::get('/register', "GuestController@register"); // register?Name_User=&Name_User=&Email_User=&password=&Type_User=
+Route::get('/register', "GuestController@register"); // register?Name_User=&Name_User=&Email_User=&password=&Type_User=
 Route::get('/User/editUser', "UserController@editUser"); // User/editUser?id=2&Name_User=Yassine2&Email_User=yassine.razaq@gmail.com
 Route::get('/User/editPass', "UserController@editPass"); // User/editPass?id=1&Current=&New=
 Route::post('/User/editUserPic', "UserController@editUserPic"); // User/editUserPic

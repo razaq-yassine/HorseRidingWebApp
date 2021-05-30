@@ -49,7 +49,7 @@ class User extends Model
     //methods
 
     public function getClient(){
-        return Client::where('Id_User', $this->id_User)->first();
+        return Client::where('Id_User', $this->id_User)->get()->first();
         //returns array of Clients
     }
     public function getAdmin(){
