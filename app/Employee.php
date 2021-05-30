@@ -44,8 +44,8 @@ class Employee extends Model
 
     //methods
 
-    public function getAllMonitors(){
-        return Monitor::where('Id_Employee', $this->id_Employee)->get();
+    public function getAllMonitor(){
+        return Monitor::where('Id_Employee', $this->id_Employee)->first();
         //returns array of Monitors
     }
     public function getAllEmployeetasks(){

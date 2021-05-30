@@ -13,14 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class GuestController extends Controller
 {
     public function login(request $request){
-//        return response()->json([
-//            'Success' => true,
-//            'id' => 17,
-//            'Name_User' => "Ahmed",
-//            'email' => request('email'),
-//            'password' => request('password'),
-//            'Type_User' => 1,
-//        ]);
+
         $user = User::findByEmail(request('email'));
         // cheking credentials
         if(!Hash::check(request('password'), $user->password)){
@@ -29,10 +22,32 @@ class GuestController extends Controller
             ]);
         }
         else{
+            $userArr = $user->toArray();
+            switch ($user->Type_User){
+                // client
+                case 1:
+                    array_push($userArr, ['client'=> $user->getClient()]);
+                    break;
+                // admin
+                case -99:
+                    array_push($userArr, ['admin'=> $user->getAdmin()]);
+                    break;
+                // monitor
+                case -1:
+                    $emplyee = $user->getEmployee();
+                    $emplyeeArr = $emplyee->toArray();
+                    array_push($emplyeeArr, ["monitor"=> $emplyee->getMonitor()]);
+                    array_push($userArr, ['employee'=> $emplyee]);
+                    break;
+                // employee
+                case -2:
+                    array_push($userArr, ['employee'=> $user->getEmployee()]);
+                    break;
 
+            }
             return response()->json([
                 'Success' => "true",
-                'user' => $user,
+                'user' => $userArr,
             ]);
 //            return back()->withErrors([
 //                'email' => 'Désole, adresse électronique ou mot de passe non valide.',

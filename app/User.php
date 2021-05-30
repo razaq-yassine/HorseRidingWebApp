@@ -48,13 +48,18 @@ class User extends Model
 
     //methods
 
-    public function getAllClients(){
-        return Client::where('Id_User', $this->id_User)->get();
+    public function getClient(){
+        return Client::where('Id_User', $this->id_User)->first();
         //returns array of Clients
     }
-    public function getAllAdmins(){
-        return Admin::where('Id_User', $this->id_User)->get();
+    public function getAdmin(){
+        return Admin::where('Id_User', $this->id_User)->first();
         //returns array of Admins
     }
+    public function getEmployee(){
+        return Employee::where('Id_User', $this->id_User)->first();
+        //returns array of Admins
+    }
+
 
 }

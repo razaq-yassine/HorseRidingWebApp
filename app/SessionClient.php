@@ -9,7 +9,7 @@ class SessionClient extends Model
 {
     protected $guarded = [];
     protected $primaryKey = 'id_SessionClient';
-
+    protected $table = 'sessionclients';
     //CRUD methods
     static public function createNewSessionClient($data){
 

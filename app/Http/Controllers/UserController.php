@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Repository\UserRepository;
 
+use App\User;
+use http\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -52,7 +54,27 @@ class UserController extends Controller
         ]);
 
     }
+    public function getClient(Request $request){
+        $user = User::find($request->input("id_User"));
+        if ($user==null){
+            return response()->json([
+                'Success' => "false",
+                'error' => "user not found"
+            ]);
+        }
+        $client =$user->getClient();
 
+        if ($client!=null){
+            return response()->json([
+               'Success' => "true",
+               "client" => $client
+            ]);
+        }
+        return response()->json([
+            'Success' => "false",
+        ]);
+
+    }
     public function editPass(Request $request)
     {
         $request->validate([
