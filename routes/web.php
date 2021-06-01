@@ -59,7 +59,7 @@ Route::group(['middleware' => 'isAuth'], function () {
 // SessionClient
 
         Route::get('/Client/editSessionClient', 'ClientController@editSessionClient');
-        Route::get('/Client/deleteSessionClient', 'ClientController@deleteSessionClient');
+
     });
 });
 
@@ -87,6 +87,7 @@ Route::get('/Admin/deleteSession', 'AdminController@deleteSession'); // Admin/de
 Route::get('/Client/listAllSessions', "ClientController@listAllSessions");
 Route::get('/User/getClient', "UserController@getClient");
 Route::get('/Client/addSessionClient', 'ClientController@addSessionClient');
+Route::get('/Client/deleteSessionClient', 'ClientController@deleteSessionClient');
 
 Route::get('/', function () {
     return view("welcome");
