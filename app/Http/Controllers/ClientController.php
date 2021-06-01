@@ -7,6 +7,7 @@ use App\SessionClient;
 use Illuminate\Http\Request;
 // imports
 use App\Repository\ClientRepository;
+use function PHPUnit\Framework\isEmpty;
 
 class ClientController extends Controller
 {
@@ -61,7 +62,8 @@ class ClientController extends Controller
     }
 	public function addSessionClient(Request $request)
 	{
-        if (SessionClient::where($request->input('Id_Session'),"Id_Session")->where($request->input('Id_Client'), 'Id_Client')->get() != null)
+
+        if (SessionClient::where("Id_Session", $request->input('Id_Session'))->where( 'Id_Client', $request->input('Id_Client'))->get()->toArray())
             return response()->json([
                 'error' => 'You already have this session in your calendar'
             ]);

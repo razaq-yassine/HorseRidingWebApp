@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\SessionClient;
 use Illuminate\Http\Request;
 // imports
 
@@ -10,7 +11,7 @@ class ClientRepository
     // controller functions
 	static public function createNewSubClient($data)
 	{
-		
+
 		try {
 		$subclient = SubClient::create($data);
 		$saved = $subclient->save();
@@ -19,11 +20,11 @@ class ClientRepository
 		report($e);
 		return false;
 		}
-		
+
 	}
 	public static function updateSubClient($id_SubClient,$data)
 	{
-		
+
 		try {
 		$subclient = SubClient::find($id_SubClient);
 		$subclient->update($data);
@@ -33,11 +34,11 @@ class ClientRepository
 		report($e);
 		return false;
 		}
-		
+
 	}
 	public static function deleteSubClient($id_SubClient)
 	{
-		
+
 		try{
 		$deleted = SubClient::find($id_SubClient)->delete();
 		return $deleted;
@@ -45,11 +46,11 @@ class ClientRepository
 		report($e);
 		return null;
 		}
-		
+
 	}
 	static public function createNewSessionClient($data)
 	{
-		
+
 		try {
 		$sessionclient = SessionClient::create($data);
 		$saved = $sessionclient->save();
@@ -58,11 +59,11 @@ class ClientRepository
 		report($e);
 		return false;
 		}
-		
+
 	}
 	public static function updateSessionClient($id_SessionClient,$data)
 	{
-		
+
 		try {
 		$sessionclient = SessionClient::find($id_SessionClient);
 		$sessionclient->update($data);
@@ -72,11 +73,11 @@ class ClientRepository
 		report($e);
 		return false;
 		}
-		
+
 	}
 	public static function deleteSessionClient($id_SessionClient)
 	{
-		
+
 		try{
 		$deleted = SessionClient::find($id_SessionClient)->delete();
 		return $deleted;
@@ -84,6 +85,6 @@ class ClientRepository
 		report($e);
 		return null;
 		}
-		
+
 	}
 }
