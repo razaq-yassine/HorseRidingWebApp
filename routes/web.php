@@ -57,7 +57,7 @@ Route::group(['middleware' => 'isAuth'], function () {
         Route::get('/Client/editSubClient', 'ClientController@editSubClient');
         Route::get('/Client/deleteSubClient', 'ClientController@deleteSubClient');
 // SessionClient
-        Route::get('/Client/addSessionClient', 'ClientController@addSessionClient');
+
         Route::get('/Client/editSessionClient', 'ClientController@editSessionClient');
         Route::get('/Client/deleteSessionClient', 'ClientController@deleteSessionClient');
     });
@@ -86,6 +86,7 @@ Route::get('/Admin/deleteSession', 'AdminController@deleteSession'); // Admin/de
 //CLient
 Route::get('/Client/listAllSessions', "ClientController@listAllSessions");
 Route::get('/User/getClient', "UserController@getClient");
+Route::get('/Client/addSessionClient', 'ClientController@addSessionClient');
 
 Route::get('/', function () {
     return view("welcome");
