@@ -186,10 +186,10 @@ class AdminRepository
 	public static function updateSession($id_Session,$data)
 	{
 
+        $session = Session::find($id_Session);
+        $session->update($data);
+        $saved =$session->save();
         try {
-            $session = Session::find($id_Session);
-            $session->update($data);
-            $saved =$session->save();
 		return $saved;
 		} catch (\Exception $e) {
 		report($e);
@@ -197,13 +197,19 @@ class AdminRepository
 		}
 
 	}
-	public static function deleteSession($id_Session)
+	public static function deleteSession($id_Session, $isForced)
 	{
 
-		try{
-		$deleted = Session::find($id_Session)->delete();
-		return $deleted;
-		} catch (\Exception $e) {
+        try{
+            if ($isForced==1){
+                $sessionsClients = Session::find($id_Session)->getAllSessionclients();
+                foreach ($sessionsClients as $sessionClient){
+                    $sessionClient->delete();
+                }
+            }
+            $deleted = Session::find($id_Session)->delete();
+            return $deleted;
+        } catch (\Exception $e) {
 		report($e);
 		return false;
 		}

@@ -308,7 +308,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'Success' => false,
-                "error"=>$validator->fails()
+                "error"=>$validator->errors()
             ]);
         }
         $data = [
@@ -330,8 +330,9 @@ class AdminController extends Controller
 	public function deleteSession(Request $request)
 	{
 
+
 		// Sending request to our repository
-		$success = AdminRepository::deleteSession($request->input('id'));
+		$success = AdminRepository::deleteSession($request->input('id'), $request->input('isForced'));
 		// returning results
 		//return back()->with('Success', $status);
 		return response()->json([
