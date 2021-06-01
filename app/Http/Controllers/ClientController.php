@@ -61,7 +61,10 @@ class ClientController extends Controller
     }
 	public function addSessionClient(Request $request)
 	{
-
+        if (SessionClient::where($request->input('Id_Session'),"Id_Session")->where($request->input('Id_Client'), 'Id_Client')->get() != null)
+            return response()->json([
+                'error' => 'You already have this session in your calendar'
+            ]);
 		$request->validate([
 			'Id_Session' => 'required',
 			'Id_Client' => 'required',

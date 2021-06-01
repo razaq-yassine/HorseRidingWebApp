@@ -205,7 +205,7 @@ class AdminRepository
 		return $deleted;
 		} catch (\Exception $e) {
 		report($e);
-		return null;
+		return false;
 		}
 
 	}

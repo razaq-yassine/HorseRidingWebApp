@@ -308,7 +308,7 @@ class AdminController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'Success' => false,
-                "error"=>$validator->failed()
+                "error"=>$validator->fails()
             ]);
         }
         $data = [
