@@ -61,23 +61,30 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            body, html {
+                height: 100%;
+            }
+
+            .bg {
+                /* The image used */
+                background-image: url("https://images.pexels.com/photos/1125774/pexels-photo-1125774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title m-b-md">
-                    Horse Riding App
-                </div>
-                <img src="https://wallpapercave.com/wp/wp7601315.jpg" style="width: 35rem;">
-                <form action="User/editUserPic" method="post">
-                    <input name="uploaded_file" placeholder="uploaded_file" required>
-                    <input name="extension" placeholder="extenstion" required>
-                    <input name="id_User" placeholder="id_User" required>
-
-                    <input type="submit">
-                </form>
-            </div>
+    <div class="bg" style="display: flex; align-items: center; justify-content: center;">
+        <div class="title m-b-md" style="color: orange">
+            < HORSE RIDING APP />
         </div>
+    </div>
     </body>
 </html>
